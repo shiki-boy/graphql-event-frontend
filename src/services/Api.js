@@ -9,7 +9,7 @@
   }
   export default () => {
     return axios.create({
-      baseURL: 'http://localhost:3000',
+      baseURL,
       // withCredentials: true         // ! to set cookies from request calls (allow)
     })
   }
