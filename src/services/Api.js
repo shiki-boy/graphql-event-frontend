@@ -1,18 +1,15 @@
   import axios from 'axios'
 
+  var baseURL
   console.log(window.location.host)
   if (!window.location.host.includes('.com')) {
-    export default () => {
-      return axios.create({
-        baseURL: 'http://localhost:3000',
-        // withCredentials: true         // ! to set cookies from request calls (allow)
-      })
-    }
+    baseURL = "http://localhost:3000"
   } else {
-    export default () => {
-      return axios.create({
-        baseURL: process.env.BASE_URL,
-        // withCredentials: true         // ! to set cookies from request calls (allow)
-      })
-    }
+    baseURL = "https://graphql-event-backend.herokuapp.com"
+  }
+  export default () => {
+    return axios.create({
+      baseURL: 'http://localhost:3000',
+      // withCredentials: true         // ! to set cookies from request calls (allow)
+    })
   }
