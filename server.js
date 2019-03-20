@@ -6,7 +6,7 @@ app = express();
 
 app.use(serveStatic(path.join(__dirname, '/dist')));
 
-const port = process.env.PORT + 1 || 5000;
+const port = process.env.PORT || 5000;
 
 // Catch all routes and redirect to the index file
 app.get('*', function (req, res) {
