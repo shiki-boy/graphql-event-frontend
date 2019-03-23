@@ -28,12 +28,11 @@ export default {
   data() {
     return {
       errorClass: "ui segment inverted red",
-      noerrorClass: "ui segment inverted green"
+      noerrorClass: "ui segment inverted green",
+      msg: { text: null, isError: false }
     };
   },
-  computed: {
-    
-  },
+  computed: {},
   components: {
     appHeader: Navbar
   },
@@ -42,7 +41,6 @@ export default {
     status.then(d => {
       if (d === "200") this.$router.push("/events");
     });
-    console.log(process)
   }
 };
 </script>
