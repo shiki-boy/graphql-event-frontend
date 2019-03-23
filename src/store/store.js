@@ -49,7 +49,7 @@ export const store = new Vuex.Store({
       state.isLoading = false
     },
     setMsg: (state, payload) => {
-      console.log('running');
+      // console.log('running');
       state.message.text = payload.text
       state.message.isError = payload.isError
     },
@@ -127,7 +127,8 @@ export const store = new Vuex.Store({
     },
     setMsg: (context, payload) => {
       context.commit('setMsg', payload)
+      setTimeout(context.commit('resetMsg'),5000)
     },
-    resetMsg: (context) => context.commit('resetMsg')
+    // resetMsg: (context) => context.commit('resetMsg')
   }
 })

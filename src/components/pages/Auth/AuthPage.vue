@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="ui two column centered grid">
+    <div class="ui two stackable column centered grid">
       <div class="eight column centered row">
         <div class="column">
           <h1>Auth Page</h1>
@@ -131,7 +131,6 @@ export default {
           let userId = res.data.data.login.userId;
           this.$store.dispatch("setUser", { token, userId });
           this.$store.dispatch("setMsg", { text: "Logged in", isError: false });
-          setTimeout(() => this.$store.dispatch("resetMsg"), 3000);
           this.$router.push("/events");
         })
         .catch(e => console.log(e.response.data.errors["0"].message));

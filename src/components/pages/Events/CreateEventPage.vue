@@ -106,22 +106,37 @@ export default {
         `
       };
 
-      let headers = { 'Authorization': "Bearer " + this.$store.getters.getToken };
+      let headers = { Authorization: "Bearer " + this.$store.getters.getToken };
 
       Api()
-        .post("/graphql", {
-          query: requestBody.query
-        },{headers})
+        .post(
+          "/graphql",
+          {
+            query: requestBody.query
+          },
+          { headers }
+        )
         .then(res => {
           console.log(res.data);
+          this.$store.dispatch("setMsg", {
+            isError: false,
+            text: "Event Created"
+          });
+          this.$router.push('/events')
         })
-        .catch(e => console.log(e.response.data.errors["0"].message));
+        .catch(e => {
+          console.log(e.response.data.errors["0"].message);
+          this.$store.dispatch('setMsg',{
+            isError: true,
+            text: e.response.data.errors["0"].message
+          })
+        });
     }
   },
-  beforeRouteEnter (to, from, next) {
-    next(vm=>{
-      if(!vm.isAuth) vm.$router.push('/')
-    })
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (!vm.isAuth) vm.$router.push("/");
+    });
   }
 };
 </script>

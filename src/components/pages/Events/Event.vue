@@ -1,6 +1,6 @@
 <template>
   <div class="column">
-    <div class="ui stackable red card hvr-grow-shadow">
+    <div class="ui red card hvr-grow-shadow">
       <div class="content">
         <div v-if="event.creator._id === currentUser" class="ui teal right right corner label">
           <i class="heart icon"></i>
@@ -52,38 +52,56 @@ export default {
       this.$emit("view-event", pos);
       $(".modal").modal("show");
     },
-    bookEvent(_id){
+    bookEvent(_id) {
       let requestBody = {
-        query:`
+        query: `
           mutation{
             bookEvent(eventId:"${_id}"){
               _id
               createdAt
             }
           }
-        ` 
-      }
+        `
+      };
 
-      let headers = {'Authorization':"Bearer "+this.$store.getters.getToken}
+      let headers = { Authorization: "Bearer " + this.$store.getters.getToken };
 
-      Api().post('/graphql',
-      {
-        query:requestBody.query
-      },{
-        headers
-      })
-      .then(res =>{
-        console.log(res.data)
-      })
-      .catch(e => {
-        console.log(e)
-      })
+      Api()
+        .post(
+          "/graphql",
+          {
+            query: requestBody.query
+          },
+          {
+            headers
+          }
+        )
+        .then(res => {
+          // console.log(res.data)
+          this.$store.dispatch("setMsg", {
+            text: "Event Booked",
+            isError: false
+          });
+        })
+        .catch(e => {
+          console.log(e);
+          this.$store.dispatch("setMsg", {
+            text: e.response.data.errors["0"].message,
+            isError: true
+          });
+        });
     }
   }
 };
 </script>
 
 <style scoped>
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .card{
+    margin:12.5% ;
+  }
+}
 /* Grow Shadow */
 .hvr-grow-shadow {
   display: inline-block;

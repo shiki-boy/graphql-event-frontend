@@ -28,11 +28,14 @@ export default {
   data() {
     return {
       errorClass: "ui segment inverted red",
-      noerrorClass: "ui segment inverted green",
-      msg: { text: null, isError: false }
+      noerrorClass: "ui segment inverted green"
     };
   },
-  computed: {},
+  computed: {
+    msg() {
+      return this.$store.getters.msg;
+    }
+  },
   components: {
     appHeader: Navbar
   },
@@ -46,6 +49,9 @@ export default {
 </script>
 
 <style>
+body.pushable>.pusher{
+  background: #666;
+}
 .fade-enter-active {
   transition: all 1s ease;
 }
@@ -60,7 +66,6 @@ export default {
 }
 
 #msg {
-  position: absolute;
   width: 60%;
 }
 

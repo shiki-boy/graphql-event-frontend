@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="ui two column centered grid">
+    <div class="ui hidden divider"></div>
+    <div class="ui two column stackable centered grid">
       <div class="eight column centered row">
         <div class="six wide column">
           <h1 style="text-align:center;">Events Page</h1>
@@ -23,7 +24,7 @@
       Events
     </h4>
     <div class="ui hidden divider"></div>
-    <div class="ui three column grid container">
+    <div class="ui three column stackable grid container">
       <template v-if="isLoading">
         <div class="ui active centered inline inverted loader"></div>
       </template>
@@ -122,3 +123,8 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+</style>
+
