@@ -32,9 +32,7 @@ export default {
     };
   },
   computed: {
-    msg() {
-      return this.$store.getters.msg;
-    }
+    
   },
   components: {
     appHeader: Navbar
@@ -44,6 +42,7 @@ export default {
     status.then(d => {
       if (d === "200") this.$router.push("/events");
     });
+    console.log(process)
   }
 };
 </script>
